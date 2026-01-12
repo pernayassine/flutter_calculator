@@ -141,7 +141,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   void converttoPerc() {
     if (n1.isNotEmpty && operat.isNotEmpty && n2.isNotEmpty) {}
     if (operat.isNotEmpty) {
-      return;
+      calculate();
     }
     final number = double.parse(n1);
     setState(() {
@@ -175,6 +175,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       // 1. If it's an operator (+, -, x, /)
       if (value != Btn.dot && int.tryParse(value) == null) {
         // If we have n1 and n2, maybe calculate first (optional for now)
+        if (operat.isNotEmpty && n2.isNotEmpty) {
+          calculate();
+        }
         operat = value;
       }
       // 2. If we are still typing the first number
